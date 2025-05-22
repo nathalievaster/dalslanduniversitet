@@ -6,5 +6,6 @@ import { MyCoursesComponent } from './pages/my-courses/my-courses.component';
 export const routes: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'courses', component: CoursesComponent},
-    { path: 'myCourses', component: MyCoursesComponent}
+    { path: 'myCourses', component: MyCoursesComponent},
+    { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
