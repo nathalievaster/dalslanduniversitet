@@ -1,10 +1,17 @@
 <header>
-  <h1>Dalslanduniversitet</h1>
-  <nav>
-    <ul>
-      <li><a routerLink="/home">Startsidan</a></li>
-      <li><a routerLink="/courses">Våra kurser</a></li>
-      <li><a routerLink="/myCourses">Ditt ramschema</a></li>
-    </ul>
-  </nav>
+  <div class="container">
+    <h1>Dalslanduniversitet</h1>
+    
+    <button class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </button>
+
+    <nav [class.open]="menuOpen">
+      <ul>
+        <li><a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Startsidan</a></li>
+        <li><a routerLink="/courses" routerLinkActive="active" (click)="closeMenu()">Våra kurser</a></li>
+        <li><a routerLink="/myCourses" routerLinkActive="active" (click)="closeMenu()">Ditt ramschema</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
