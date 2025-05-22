@@ -9,5 +9,6 @@ export const routes: Routes = [
     { path: 'courses', component: CoursesComponent},
     { path: 'myCourses', component: MyCoursesComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full'},
-    { path: '404', component: NotFoundComponent}
+    { path: '404', component: NotFoundComponent},
+    { path: '**', component: NotFoundComponent}
 ];
