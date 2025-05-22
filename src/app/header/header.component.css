@@ -59,14 +59,21 @@ nav li a {
     padding: 0.5rem;
 }
 
+nav li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  background-color: #a8dadc;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+nav li a:hover::after,
 nav li a.active::after {
-    content: '';
-    width: 100%;
-    height: 3px;
-    background-color: #a8dadc;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  width: 100%;
 }
 
 /* För större skärmar */
