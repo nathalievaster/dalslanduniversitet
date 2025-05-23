@@ -2,11 +2,11 @@
 
 <table>
     <thead>
-        <th>Kurskod</th>
-        <th>Kursnamn</th>
-        <th>Poäng</th>
-        <th>Ämne</th>
-        <th>Kursplan</th>
+        <th (click)="sortCourses('courseCode')"style="cursor:pointer;">Kurskod</th>
+        <th (click)="sortCourses('courseName')"style="cursor:pointer;">Kursnamn</th>
+        <th (click)="sortCourses('points')"style="cursor:pointer;">Poäng</th>
+        <th (click)="sortCourses('subject')"style="cursor:pointer;">Ämne</th>
+        <th (click)="sortCourses('syllabus')"style="cursor:pointer;">Kursplan</th>
     </thead>
     <tbody>
         <tr *ngFor="let course of courselist">
