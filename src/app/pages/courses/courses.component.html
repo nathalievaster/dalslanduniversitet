@@ -1,7 +1,24 @@
 <h2>Våra kurser</h2>
 
-<ul>
-    <li *ngFor="let course of courselist">
-        {{ course.courseName }}
-    </li>
-</ul>
+<table>
+    <thead>
+        <th>Kurskod</th>
+        <th>Kursnamn</th>
+        <th>Poäng</th>
+        <th>Ämne</th>
+        <th>Kursplan</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let course of courselist">
+            <td> {{ course.courseCode }} </td>
+            <td> {{ course.courseName }} </td>
+            <td> {{ course.points }} </td>
+            <td> {{ course.subject }} </td>
+            <td>
+                <a [href]="course.syllabus" target="_blank">
+                    Kursplan
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
