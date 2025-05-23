@@ -1,5 +1,6 @@
 <h2>Våra kurser</h2>
 
+<div class="filterControls">
 <!-- Sökfält som sorterar på kursnamn och kurskod-->
 <input type="text" [(ngModel)]="searchText" placeholder="Sök kurskod eller kursnamn" />
 
@@ -8,6 +9,7 @@
   <option value="">Alla ämnen</option>
   <option *ngFor="let s of uniqueSubjects" [value]="s">{{ s }}</option>
 </select>
+</div>
 <table>
     <thead>
         <th (click)="sortCourses('courseCode')"style="cursor:pointer;">Kurskod</th>
