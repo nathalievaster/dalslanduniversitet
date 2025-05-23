@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Course } from '../../models/course';
 import { CourseService } from '../../services/course.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-courses',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
