@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { SchemaService } from '../../services/schema.service';
 import { Course } from '../../models/course';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-my-courses',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './my-courses.component.html',
   styleUrl: './my-courses.component.css'
 })
@@ -20,7 +21,4 @@ export class MyCoursesComponent {
     this.schemaService.removeFromSchedule(courseCode);
     this.schedule = this.schemaService.getSchedule(); // Uppdatera listan
   }
-  logSchedule() {
-  console.log(this.schemaService.getSchedule());
-}
 }
