@@ -3,6 +3,7 @@ import { Course } from '../../models/course';
 import { CourseService } from '../../services/course.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SchemaService } from '../../services/schema.service';
 
 @Component({
   selector: 'app-courses',
@@ -13,7 +14,9 @@ import { FormsModule } from '@angular/forms';
 export class CoursesComponent {
   courselist: Course[] = [];
 
-  constructor(private courseservice : CourseService) {}
+  constructor(private courseservice : CourseService,
+    private schemaService: SchemaService
+  ) {}
 
   ngOnInit() {
     this.courseservice.getCourses().subscribe(data => {
@@ -71,4 +74,13 @@ sortCourses(field: string): void {
     });
   }
 
+  // Metod för att lägga till kurs i ramschema 
+  addCourseToSchedule(course: Course): void {
+    const success = this.schemaService.addToSchedule(course);
+    if (success) {
+      alert(`Kursen "${course.courseName}" har lagts till i ditt ramschema.`);
+    } else {
+      alert(`Kursen "${course.courseName}" finns redan i ditt ramschema.`);
+    }
+  }
 }
