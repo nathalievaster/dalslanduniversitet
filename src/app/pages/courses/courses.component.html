@@ -1,5 +1,13 @@
 <h2>Våra kurser</h2>
 
+<!-- Sökfält som sorterar på kursnamn och kurskod-->
+<input type="text" [(ngModel)]="searchText" placeholder="Sök kurskod eller kursnamn" />
+
+<!-- Dropdown för ämne -->
+<select [(ngModel)]="selectedSubject">
+  <option value="">Alla ämnen</option>
+  <option *ngFor="let s of uniqueSubjects" [value]="s">{{ s }}</option>
+</select>
 <table>
     <thead>
         <th (click)="sortCourses('courseCode')"style="cursor:pointer;">Kurskod</th>
@@ -9,7 +17,7 @@
         <th (click)="sortCourses('syllabus')"style="cursor:pointer;">Kursplan</th>
     </thead>
     <tbody>
-        <tr *ngFor="let course of courselist">
+        <tr *ngFor="let course of filteredCourses">
             <td> {{ course.courseCode }} </td>
             <td> {{ course.courseName }} </td>
             <td> {{ course.points }} </td>
