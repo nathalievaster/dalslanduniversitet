@@ -1,1 +1,26 @@
-<p>my-courses works!</p>
+<h2>Mitt Ramschema</h2>
+
+<table *ngIf="schedule.length > 0">
+  <thead>
+    <tr>
+      <th>Kurskod</th>
+      <th>Kursnamn</th>
+      <th>Poäng</th>
+      <th>Ämne</th>
+      <th>Kursplan</th>
+      <th>Ta bort</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of schedule">
+      <td>{{ course.courseCode }}</td>
+      <td>{{ course.courseName }}</td>
+      <td>{{ course.points }}</td>
+      <td>{{ course.subject }}</td>
+      <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
+      <td><button (click)="removeCourse(course.courseCode)">Ta bort</button></td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="logSchedule()">Logga schema</button>
+<p *ngIf="schedule.length === 0">Du har inte lagt till några kurser än.</p>

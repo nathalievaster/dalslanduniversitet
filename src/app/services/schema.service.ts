@@ -25,4 +25,12 @@ export class SchemaService {
     localStorage.setItem(this.schemaKey, JSON.stringify(schedule));
     return true;
   }
+
+  removeFromSchedule(courseCode: string): void {
+    let schedule = this.getSchedule();
+    // Ta bort kurs med samma kurskod som den som skickades in
+    schedule = schedule.filter(c => c.courseCode !== courseCode);
+    // Uppdatera schemat
+    localStorage.setItem(this.schemaKey, JSON.stringify(schedule));
+  }
 }
