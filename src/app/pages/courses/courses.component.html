@@ -30,8 +30,13 @@
                 </a>
             </td>
             <td data-label="Ramschema">
-                <button (click)="addCourseToSchedule(course)">Lägg till</button>
+            <td>
+                <button (click)="addToSchedule(course)" [disabled]="addedCourses.includes(course.courseCode)"
+                    [ngClass]="{ 'added': addedCourses.includes(course.courseCode) }">
+                    {{ addedCourses.includes(course.courseCode) ? 'Tillagd' : 'Lägg till' }}
+                </button>
             </td>
+
         </tr>
     </tbody>
 </table>
