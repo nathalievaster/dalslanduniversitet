@@ -21,4 +21,8 @@ export class MyCoursesComponent {
     this.schemaService.removeFromSchedule(courseCode);
     this.schedule = this.schemaService.getSchedule(); // Uppdatera listan
   }
+  get totalPoints(): number {
+  return this.schedule.reduce((sum, course) => sum + course.points, 0);
+}
+
 }
