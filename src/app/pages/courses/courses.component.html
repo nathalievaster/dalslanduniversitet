@@ -10,6 +10,13 @@
         <option *ngFor="let s of uniqueSubjects" [value]="s">{{ s }}</option>
     </select>
 </div>
+<div class="course-count-info" *ngIf="filteredCourses.length > 0">
+  Visar {{ filteredCourses.length }} kurs{{ filteredCourses.length === 1 ? '' : 'er' }}.
+</div>
+<div class="course-count-info no-match" *ngIf="filteredCourses.length === 0">
+  Inga kurser matchar din sökning.
+</div>
+
 <table>
     <thead>
         <th (click)="sortCourses('courseCode')" style="cursor:pointer;">Kurskod</th>
