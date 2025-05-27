@@ -1,10 +1,11 @@
 <header>
   <div class="container">
-    <h1>Dalslands universitet</h1>
-    
-    <button class="menu-toggle" (click)="toggleMenu()">
-      ☰
-    </button>
+    <div class="branding">
+      <img src="/logga.png" alt="Logga" class="logo" />
+      <h1>Dalslands universitet</h1>
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()">☰</button>
 
     <nav [class.open]="menuOpen">
       <ul>

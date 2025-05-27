@@ -13,12 +13,19 @@ header .container {
     flex-wrap: wrap;
 }
 
-h1 {
-    font-size: 1.8rem;
-    margin: 0;
-    font-weight: 700;
+/* Branding: logga + h1 */
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
+.logo {
+    height: 80px;
+    width: auto;
+}
+
+/* Menyknapp */
 .menu-toggle {
     background: none;
     border: none;
@@ -28,12 +35,12 @@ h1 {
     display: none;
 }
 
+/* Navigering */
 nav {
     flex-basis: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     margin-top: 1rem;
-    display: none;
 }
 
 nav.open {
@@ -60,35 +67,44 @@ nav li a {
 }
 
 nav li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 3px;
-  background-color: #a8dadc;
-  width: 0;
-  transition: width 0.3s ease;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    background-color: #a8dadc;
+    width: 0;
+    transition: width 0.3s ease;
 }
 
 nav li a:hover::after,
 nav li a.active::after {
-  width: 100%;
+    width: 100%;
+}
+
+h1 {
+    display: none;
 }
 
 /* För större skärmar */
 @media (min-width: 768px) {
-    .menu-toggle {
-        display: none;
-    }
-
     h1 {
-        margin: 0 0 1.5rem 0;
-    }
+    display: block;
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 700;
+}
 
     header .container {
-        flex-direction: column;
-        text-align: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+    }
+
+    .menu-toggle {
+        display: none;
     }
 
     nav {
