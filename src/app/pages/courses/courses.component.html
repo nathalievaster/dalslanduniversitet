@@ -2,10 +2,10 @@
 
 <div class="filterControls">
     <!-- Sökfält som sorterar på kursnamn och kurskod-->
-    <input type="text" [(ngModel)]="searchText" placeholder="Sök kurskod eller kursnamn" />
+    <input type="text" [(ngModel)]="searchText" (ngModelChange)="onFilterChange()" placeholder="Sök kurskod eller kursnamn" />
 
     <!-- Dropdown för ämne -->
-    <select [(ngModel)]="selectedSubject">
+    <select [(ngModel)]="selectedSubject" (change)="onFilterChange()">
         <option value="">Alla ämnen</option>
         <option *ngFor="let s of uniqueSubjects" [value]="s">{{ s }}</option>
     </select>
@@ -26,7 +26,7 @@
         <th (click)="sortCourses('syllabus')" style="cursor:pointer;">Kursplan</th>
     </thead>
     <tbody>
-        <tr *ngFor="let course of filteredCourses">
+        <tr *ngFor="let course of paginatedCourses">
             <td> {{ course.courseCode }} </td>
             <td> {{ course.courseName }} </td>
             <td> {{ course.points }} </td>
@@ -47,3 +47,19 @@
         </tr>
     </tbody>
 </table>
+
+<div class="pagination" *ngIf="totalPages > 1">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Föregående</button>
+
+  <button *ngIf="shouldShowPage(1)" (click)="changePage(1)" [class.active]="currentPage === 1">1</button>
+  <span *ngIf="currentPage > 4">...</span>
+
+  <ng-container *ngFor="let page of visiblePages()">
+    <button (click)="changePage(page)" [class.active]="currentPage === page">{{ page }}</button>
+  </ng-container>
+
+  <span *ngIf="currentPage < totalPages - 3">...</span>
+  <button *ngIf="shouldShowPage(totalPages)" (click)="changePage(totalPages)" [class.active]="currentPage === totalPages">{{ totalPages }}</button>
+
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Nästa</button>
+</div>

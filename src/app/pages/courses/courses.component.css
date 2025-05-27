@@ -144,3 +144,33 @@ button.added {
   border: 1px solid #f5c6cb;
   text-align: center;
 }
+
+.pagination {
+  margin-top: 1em;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.pagination button,
+.pagination span {
+  margin: 2px;
+  padding: 6px 10px;
+  border: none;
+  background-color: #a3a3a3;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:disabled {
+  display: none;
+}
+
+.pagination span {
+  background: none;
+  cursor: default;
+}

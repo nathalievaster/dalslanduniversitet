@@ -18,7 +18,7 @@ export class CoursesComponent {
     private schemaService: SchemaService
   ) { }
 
-    ngOnInit() {
+  ngOnInit() {
     this.courseservice.getCourses().subscribe(data => {
       this.courselist = data;
       // Behåller bara unika ämnen till dropdown-menyn
@@ -87,4 +87,57 @@ export class CoursesComponent {
       this.addedCourses.push(course.courseCode);
     }
   }
+
+  // Återställ till första sidan vid filterändring
+  onFilterChange(): void {
+    this.currentPage = 1;
+  }
+
+  // Paginering
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+
+  get totalPages(): number {
+    // Använder math.ceil för att runda upp (13 kurser blir inte 1,3 sidor, utan 2)
+    return Math.ceil(this.filteredCourses.length / this.itemsPerPage);
+  }
+
+  get paginatedCourses(): Course[] {
+    // -1 för att få rätt index på kurserna i arrayen
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    // Använder slice för att plocka ut den delen av arrayen
+    return this.filteredCourses.slice(start, start + this.itemsPerPage);
+  }
+
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  // Hjälpfunktioner för att visa sidnummer snyggt
+  visiblePages(): number[] {
+    const pages: number[] = [];
+    // Anger hur många sidor vi vill visa på varje sida av den aktuella sidan
+    const maxAround = 2;
+
+    // Använder math.max(2, något) för att se till att det aldrig börjar tidigare än sida 2 pga att sida 1 alltid ska visas separat
+    const start = Math.max(2, this.currentPage - maxAround);
+    // Samma men tvärtom, så sista sidan alltid visas separat
+    const end = Math.min(this.totalPages - 1, this.currentPage + maxAround);
+
+    // Loopar igenom alla sidorna mellan start och end, och pushar till arrayen
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  }
+
+  // Visa alltid första sidan och sista sidan
+  shouldShowPage(page: number): boolean {
+    return page === 1 || page === this.totalPages;
+  }
+
 }
