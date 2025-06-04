@@ -32,4 +32,28 @@ export class MyCoursesComponent {
   get totalPoints(): number {
     return this.schedule.reduce((sum, course) => sum + course.points, 0);
   }
+
+  courseToRemove: Course | null = null;
+showConfirmDialog = false;
+
+// Visar bekräftelserutan
+confirmRemove(course: Course) {
+  this.courseToRemove = course;
+  this.showConfirmDialog = true;
+}
+
+// Användaren bekräftar borttagning
+removeConfirmed() {
+  if (this.courseToRemove) {
+    this.schemaService.removeFromSchedule(this.courseToRemove.courseCode);
+    this.schedule = this.schemaService.getSchedule();
+  }
+  this.cancelRemove();
+}
+
+// Användaren ångrar sig
+cancelRemove() {
+  this.courseToRemove = null;
+  this.showConfirmDialog = false;
+}
 }

@@ -13,14 +13,31 @@
   </thead>
   <tbody>
     <tr *ngFor="let course of schedule">
-      <td>{{ course.courseCode }}</td>
-      <td>{{ course.courseName }}</td>
-      <td>{{ course.points }}</td>
-      <td>{{ course.subject }}</td>
-      <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
-      <td><button (click)="removeCourse(course.courseCode)">Ta bort</button></td>
+      <td data-label="Kurskod">{{ course.courseCode }}</td>
+      <td data-label="Kursnamn">{{ course.courseName }}</td>
+      <td data-label="Poäng">{{ course.points }}</td>
+      <td data-label="Ämne">{{ course.subject }}</td>
+      <td data-label="Kursplan">
+        <a [href]="course.syllabus" target="_blank">Kursplan</a>
+      </td>
+      <td data-label="Ta bort">
+        <button (click)="confirmRemove(course)">Ta bort</button>
+      </td>
     </tr>
   </tbody>
 </table>
+
 <p *ngIf="schedule.length === 0">Du har inte lagt till några kurser än.</p>
 <p *ngIf="schedule.length > 0"><strong>Totala poäng:</strong> {{ totalPoints }} hp</p>
+
+<!-- Enkel bekräftelsedialog -->
+<div class="confirm-dialog" *ngIf="showConfirmDialog">
+  <div class="confirm-box">
+    <p>
+      Är du säker på att du vill ta bort kursen
+      "<strong>{{ courseToRemove?.courseName }}</strong>"?
+    </p>
+    <button (click)="removeConfirmed()">Ja, ta bort</button>
+    <button (click)="cancelRemove()">Avbryt</button>
+  </div>
+</div>
