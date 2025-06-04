@@ -54,13 +54,16 @@ Detta är en SPA (Single Page Application) byggd med **Angular** och **TypeScrip
 ## Funktionalitet för högre betyg
 
 ### Komponentuppdelning
-- Separat **filter- och sorteringsservice (`CourseFilterService`)** skapad för logik kring filtrering, sortering och sidhantering.
+- Separat **filter- och sorteringsservice (`CourseFilterService`)** skapad för logik kring filtrering, sortering och sidhantering. Därmed är det fler än 2 services som används på sidan.
 
 ### Tjänstefunktionalitet
 - Services följer **Single Responsibility Principle**:
   - `CourseService` – hämtar kursdata.
   - `SchemaService` – hanterar localStorage.
   - `CourseFilterService` – all filtrerings-, sorterings- och pagineringslogik.
+
+### Paginering
+- Listan med alla kurser delas snyggt upp i sidor om 10 kurser. Sista och första sidan visas alltid, annars visas bara den befintliga sidan samt 2 sidor på varje sida. Detta följer standard på många andra sidor, och är tydligt för besökaren. 
 
 ### Mer utvecklat användargränssnitt
 - Hero-bild med overlay-intro på startsidan.
@@ -70,6 +73,8 @@ Detta är en SPA (Single Page Application) byggd med **Angular** och **TypeScrip
 - Hover-animationer på samtliga länkar
 - Färgval som uppfyller tillgänglighetskrav och bra kontrast.
 - "Lägg till"-knapp ändras till "Tillagd", blir grå och inte längre klickbar efter att kurs lagts till. Detta blir tydligt mot besökare vilka kurser de lagt till och tydlig respons på att de lyckades lägga till.
+- En "confirm-box" vid borttagning av kurser. Användaren får en extra säkerhet innan något tas bort. Detta är bättre och tydligare användarupplevelse.
+- För att få startsidans korts bakgrund att se snygg och modern ut använde jag en mjuk färgövergång (gradient) tillsammans med en skugga och en färgad kant. Jag lade också till en genomskinlig sned bakgrundsform för extra djup och liv.
 
 
 ### Git och publicering
