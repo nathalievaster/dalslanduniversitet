@@ -159,11 +159,19 @@ button.added {
   background-color: #a3a3a3;
   cursor: pointer;
   border-radius: 4px;
+  transition: transform background-color 1s;
+}
+
+.pagination button:hover,
+.pagination span:hover {
+  background-color: #007acc;
 }
 
 .pagination button.active {
   background-color: #007bff;
   color: white;
+  transform: scale(1.2);
+  margin: 0.5em;
 }
 
 .pagination button:disabled {
