@@ -10,19 +10,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './my-courses.component.css'
 })
 export class MyCoursesComponent {
-  schedule: Course [] = [];
+  // Array som innehåller kurser i studentens schema
+  schedule: Course[] = [];
 
+  // Injicerar SchemaService för att kunna hämta och manipulera schemat
   constructor(private schemaService: SchemaService) {}
 
+  // Körs när komponenten initialiseras – hämtar schemat
   ngOnInit() {
     this.schedule = this.schemaService.getSchedule();
   }
+
+  // Tar bort en kurs från schemat baserat på kurskod
   removeCourse(courseCode: string) {
     this.schemaService.removeFromSchedule(courseCode);
-    this.schedule = this.schemaService.getSchedule(); // Uppdatera listan
+    // Uppdaterar schemat efter att en kurs tagits bort
+    this.schedule = this.schemaService.getSchedule();
   }
-  get totalPoints(): number {
-  return this.schedule.reduce((sum, course) => sum + course.points, 0);
-}
 
+  // Räknar ut den totala poängsumman för valda kurser
+  get totalPoints(): number {
+    return this.schedule.reduce((sum, course) => sum + course.points, 0);
+  }
 }
